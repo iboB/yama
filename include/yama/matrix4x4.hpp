@@ -704,7 +704,7 @@ public:
     {
         static_assert(D <= columns_count, "yama::matrix4x4_t column_vector out of range");
         YAMA_ASSERT_BAD(D + offset <= rows_count, "yama::matrix4x4_t column_vector reaching end of column");
-        return dim<D>::vector_t<value_type>::attach_to_ptr(column(col) + offset);
+        return dim<D>::template vector_t<value_type>::attach_to_ptr(column(col) + offset);
     }
 
     template <size_t D>
@@ -712,7 +712,7 @@ public:
     {
         static_assert(D <= columns_count, "yama::matrix4x4_t column_vector out of range");
         YAMA_ASSERT_BAD(D + offset <= rows_count, "yama::matrix4x4_t column_vector reaching end of column");
-        return dim<D>::vector_t<value_type>::attach_to_ptr(column(col) + offset);
+        return dim<D>::template vector_t<value_type>::attach_to_ptr(column(col) + offset);
     }
 
     vector4_t<value_type>& column_vector(size_t col)
@@ -730,7 +730,7 @@ public:
     {
         static_assert(D < rows_count, "yama::matrix4x4_t row_vector out of range");
         YAMA_ASSERT_BAD(D + offset <= columns_count, "yama::matrix4x4_t row_vector reaching end of column");
-        dim<D>::vector_t<value_type> ret;
+        typename dim<D>::template vector_t<value_type> ret;
         for (size_t i = 0; i < D; ++i)
         {
             ret.at(i) = column(offset + i)[row];
@@ -748,7 +748,7 @@ public:
     {
         static_assert(D < rows_count, "yama::matrix4x4_t row_vector out of range");
         YAMA_ASSERT_BAD(D + offset <= columns_count, "yama::matrix4x4_t row_vector reaching end of column");
-        dim<D>::vector_t<value_type> ret;
+        typename dim<D>::template vector_t<value_type> ret;
         for (size_t i = 0; i < D; ++i)
         {
             ret.at(i) = m(offset+i, offset+i);
