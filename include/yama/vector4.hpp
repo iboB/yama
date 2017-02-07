@@ -326,7 +326,7 @@ public:
 
     constexpr value_type manhattan_length() const
     {
-        return x + y + z + w;
+        return std::abs(x) + std::abs(y) + std::abs(z) + std::abs(w);
     }
 
     value_type normalize()
@@ -359,6 +359,11 @@ public:
         YAMA_ASSERT_WARN(normal.is_normalized(), "Reflecting with a non-normalized normal yama::vector4_t");
         auto dd = 2 * dot(*this, normal);
         return coord(x - dd * normal.x, y - dd * normal.y, z - dd * normal.z, w - dd * normal.w);
+    }
+
+    value_type product() const
+    {
+        return x * y * z * w;
     }
 };
 

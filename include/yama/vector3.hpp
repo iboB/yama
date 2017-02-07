@@ -311,7 +311,7 @@ public:
 
     constexpr value_type manhattan_length() const
     {
-        return x + y + z;
+        return std::abs(x) + std::abs(y) + std::abs(z);
     }
 
     value_type normalize()
@@ -371,6 +371,11 @@ public:
             ret.at((non_zero_index + 1) % 3) = this->at(non_zero_index);
             return ret;
         }
+    }
+
+    value_type product() const
+    {
+        return x * y * z;
     }
 };
 

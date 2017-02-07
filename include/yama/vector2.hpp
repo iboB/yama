@@ -298,7 +298,7 @@ public:
 
     constexpr value_type manhattan_length() const
     {
-        return x + y;
+        return std::abs(x) + std::abs(y);
     }
 
     value_type normalize()
@@ -333,6 +333,11 @@ public:
     {
         YAMA_ASSERT_WARN(!close(*this, zero()), "finding an orthogonal of a zero vector2_t");
         return coord(-y, x);
+    }
+
+    value_type product() const
+    {
+        return x * y;
     }
 };
 
