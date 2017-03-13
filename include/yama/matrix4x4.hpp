@@ -125,7 +125,7 @@ public:
 
     static constexpr matrix4x4_t scaling_uniform(const value_type& s)
     {
-        YAMA_ASSERT_WARN(!close(s, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN14(!close(s, value_type(0)), "scale shouldn't be zero");
         return columns(
             s, 0, 0, 0,
             0, s, 0, 0,
@@ -136,9 +136,9 @@ public:
 
     static constexpr matrix4x4_t scaling(const value_type& x, const value_type& y, const value_type& z)
     {
-        YAMA_ASSERT_WARN(!close(x, value_type(0)), "scale shouldn't be zero");
-        YAMA_ASSERT_WARN(!close(y, value_type(0)), "scale shouldn't be zero");
-        YAMA_ASSERT_WARN(!close(z, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN14(!close(x, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN14(!close(y, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN14(!close(z, value_type(0)), "scale shouldn't be zero");
         return columns(
             x, 0, 0, 0,
             0, y, 0, 0,
@@ -227,7 +227,7 @@ public:
         auto axis = cross(src, target);
         auto axis_length = axis.normalize();
 
-        if (axis_length > constants_t<value_type>::EPSILON) // not collinear
+        if (axis_length > constants_t<value_type>::EPSILON()) // not collinear
         {
             auto angle = acos(dot(src, target));
             return rotation_naxis(axis, angle);
@@ -653,7 +653,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT(i < value_count, "yama::matrix4x4_t index overflow");
+        YAMA_ASSERT_CRIT14(i < value_count, "yama::matrix4x4_t index overflow");
         return data()[i];
     }
 
@@ -675,7 +675,7 @@ public:
 
     constexpr const value_type* column(size_t i) const
     {
-        YAMA_ASSERT_CRIT(i < columns_count, "yama::matrix4x4_t column index overflow");
+        YAMA_ASSERT_CRIT14(i < columns_count, "yama::matrix4x4_t column index overflow");
         return data() + rows_count * i;
     }
 
@@ -1028,7 +1028,7 @@ bool operator!=(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b)
 }
 
 template <typename T>
-bool close(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON)
+bool close(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON())
 {
     return
         close(a.m00, b.m00, epsilon) && close(a.m10, b.m10, epsilon) && close(a.m20, b.m20, epsilon) && close(a.m30, b.m30, epsilon) &&

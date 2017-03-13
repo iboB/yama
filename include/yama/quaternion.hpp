@@ -132,7 +132,7 @@ public:
         auto axis = cross(src, target);
         auto axis_length = axis.normalize();
 
-        if (axis_length > constants_t<value_type>::EPSILON) // not collinear
+        if (axis_length > constants_t<value_type>::EPSILON()) // not collinear
         {
             auto half_cos = dot(src, target);
             auto cos_half = std::sqrt(value_type(0.5) + half_cos);
@@ -192,7 +192,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT(i < value_count, "yama::quaternion_t index overflow");
+        YAMA_ASSERT_CRIT14(i < value_count, "yama::quaternion_t index overflow");
         return data()[i];
     }
 
@@ -440,7 +440,7 @@ public:
 
         value_type scale = value_type(1) - sq(w);
 
-        if (scale < constants_t<value_type>::EPSILON)
+        if (scale < constants_t<value_type>::EPSILON())
         {
             out_axis = vector3_t<value_type>::coord(0, 0, 1);
         }
@@ -526,7 +526,7 @@ bool operator!=(const quaternion_t<T>& a, const quaternion_t<T>& b)
 }
 
 template <typename T>
-bool close(const quaternion_t<T>& a, const quaternion_t<T>& b, const T& epsilon = constants_t<T>::EPSILON)
+bool close(const quaternion_t<T>& a, const quaternion_t<T>& b, const T& epsilon = constants_t<T>::EPSILON())
 {
     return close(a.x, b.x, epsilon) && close(a.y, b.y, epsilon) && close(a.z, b.z, epsilon) && close(a.w, b.w, epsilon);
 }

@@ -10,8 +10,8 @@
 
 using namespace yama;
 
-static_assert(constants_t<int>::PI == 3, "yama constants must be constexpr");
-static_assert(constants_t<double>::SQRT_2 == 1.4142135623730950488016887242097, "yama constants must be constexpr");
+static_assert(constants_t<int>::PI() == 3, "yama constants must be constexpr");
+static_assert(constants_t<double>::SQRT_2() == 1.4142135623730950488016887242097, "yama constants must be constexpr");
 
 static_assert(!is_yama<int>::value, "int is not a yama type");
 static_assert(!is_vector<float>::value, "float is not a vector type");

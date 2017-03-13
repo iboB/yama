@@ -464,26 +464,26 @@ TEST_CASE("transform")
     CHECK(YamaApprox(matrix3x4::rotation_axis(uy, 0.13f)) == matrix3x4::rotation_y(0.13f));
     CHECK(YamaApprox(matrix3x4::rotation_axis(uz, 1.22f)) == matrix3x4::rotation_z(1.22f));
 
-    auto q0 = quaternion::rotation_x(constants::PI_HALF);
+    auto q0 = quaternion::rotation_x(constants::PI_HALF());
     auto m1 = matrix3x4::rotation_quaternion(q0);
 
-    auto m0 = matrix3x4::rotation_x(constants::PI_HALF);
+    auto m0 = matrix3x4::rotation_x(constants::PI_HALF());
     CHECK(YamaApprox(m1) == m0);
     CHECK(YamaApprox(transform_coord(ux, m0)) == ux);
     CHECK(YamaApprox(transform_coord(uy, m0)) == uz);
     CHECK(YamaApprox(transform_coord(uz, m0)) == -uy);
 
-    q0 = quaternion::rotation_y(constants::PI_HALF);
+    q0 = quaternion::rotation_y(constants::PI_HALF());
     m1 = matrix3x4::rotation_quaternion(q0);
-    m0 = matrix3x4::rotation_y(constants::PI_HALF);
+    m0 = matrix3x4::rotation_y(constants::PI_HALF());
     CHECK(YamaApprox(m1) == m0);
     CHECK(YamaApprox(transform_coord(ux, m0)) == -uz);
     CHECK(YamaApprox(transform_coord(uy, m0)) == uy);
     CHECK(YamaApprox(transform_coord(uz, m0)) == ux);
 
-    q0 = quaternion::rotation_z(constants::PI_HALF);
+    q0 = quaternion::rotation_z(constants::PI_HALF());
     m1 = matrix3x4::rotation_quaternion(q0);
-    m0 = matrix3x4::rotation_z(constants::PI_HALF);
+    m0 = matrix3x4::rotation_z(constants::PI_HALF());
     CHECK(YamaApprox(m1) == m0);
     CHECK(YamaApprox(transform_coord(ux, m0)) == uy);
     CHECK(YamaApprox(transform_coord(uy, m0)) == -ux);

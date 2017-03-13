@@ -18,7 +18,7 @@ public:
     typedef typename Y::value_type value_type;
 
     explicit YApprox(const Y& value)
-        : e(constants_t<value_type>::EPSILON)
+        : e(constants_t<value_type>::EPSILON())
         , v(value)
     {
 

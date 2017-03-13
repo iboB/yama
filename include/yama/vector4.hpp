@@ -132,7 +132,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT(i < value_count, "yama::vector4_t index overflow");
+        YAMA_ASSERT_CRIT14(i < value_count, "yama::vector4_t index overflow");
         return data()[i];
     }
 
@@ -417,7 +417,7 @@ bool operator!=(const vector4_t<T>& a, const vector4_t<T>& b)
 }
 
 template <typename T>
-bool close(const vector4_t<T>& a, const vector4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON)
+bool close(const vector4_t<T>& a, const vector4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON())
 {
     return close(a.x, b.x, epsilon) && close(a.y, b.y, epsilon) && close(a.z, b.z, epsilon) && close(a.w, b.w, epsilon);
 }
