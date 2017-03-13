@@ -10,6 +10,8 @@
 #include "yama/ext/ostream.hpp"
 #include "doctest/doctest.h"
 
+#include <cstring>
+
 
 template <typename Y>
 class YApprox
@@ -18,7 +20,7 @@ public:
     typedef typename Y::value_type value_type;
 
     explicit YApprox(const Y& value)
-        : e(constants_t<value_type>::EPSILON())
+        : e(yama::constants_t<value_type>::EPSILON())
         , v(value)
     {
 
@@ -30,7 +32,7 @@ public:
         return *this;
     }
 
-    typename value_type e;
+    value_type e;
     const Y& v;
 };
 
