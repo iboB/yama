@@ -417,6 +417,12 @@ TEST_CASE("members")
     CHECK(det == 43);
     m0 *= m1;
     CHECK(YamaApprox(m0) == matrix::identity());
+
+    m0 = m2 = matrix::rows(3, 22, 12, 5, 17, 8, 24, 6, 19, 27, 3, 7, 10, 7, 11, 8);
+    det = m2.inverse();
+    CHECK(det == 47634);
+    m0 *= m2;
+    CHECK(YamaApprox(m0) == matrix::identity());
 }
 
 TEST_CASE("ops")
@@ -479,6 +485,7 @@ TEST_CASE("ops")
     m2 = inverse(m1, det);
     CHECK(det == 43);
     CHECK(YamaApprox(m1 * m2) == matrix::identity());
+    CHECK(YamaApprox(m2 * m1) == matrix::identity());
 }
 
 TEST_CASE("transform")

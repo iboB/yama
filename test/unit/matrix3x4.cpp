@@ -360,6 +360,8 @@ TEST_CASE("members")
     CHECK(m0 == m1);
 
     auto m2 = matrix3x4::identity();
+    m2.inverse();
+    CHECK(m2 == matrix3x4::identity());
     m2.transpose();
     CHECK(m2 == matrix3x4::identity());
 
@@ -374,6 +376,18 @@ TEST_CASE("members")
     m2 = matrix3x4::rows(1, 1, 1, 3, 1, 3, 4, 2, 0, 5, 1, 2);
     m1 *= m2;
     CHECK(m1 == matrix3x4::rows(3, 22, 12, 17, 8, 24, 19, 27, 3, 10, 7, 11));
+
+    m0 = m2;
+    auto det = m2.inverse();
+    CHECK(det == -13);
+    m0 *= m2;
+    CHECK(YamaApprox(m0) == matrix3x4::identity());
+
+    m0 = m1;
+    det = m1.inverse();
+    CHECK(det == 52);
+    m0 *= m1;
+    CHECK(YamaApprox(m0) == matrix3x4::identity());
 }
 
 TEST_CASE("ops")
@@ -433,6 +447,12 @@ TEST_CASE("ops")
     m2 = matrix3x4::rows(1, 1, 1, 3, 1, 3, 4, 2, 0, 5, 1, 2);
     CHECK(m1 * m2 ==
         matrix3x4::rows(3, 22, 12, 17, 8, 24, 19, 27, 3, 10, 7, 11));
+
+    float det;
+    m2 = inverse(m1, det);
+    CHECK(det == -4);
+    CHECK(YamaApprox(m1 * m2) == matrix3x4::identity());
+    CHECK(YamaApprox(m2 * m1) == matrix3x4::identity());
 }
 
 TEST_CASE("transform")

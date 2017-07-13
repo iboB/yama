@@ -610,8 +610,8 @@ public:
     value_type determinant() const
     {
         return
-            m02*m11*m20 + m01*m12*m20 + m02*m10*m21 -
-            m00*m12*m21 - m01*m10*m22 + m00*m11*m22;
+            -(m02*m11*m20) + m01*m12*m20 + m02*m10*m21 -
+             m00*m12*m21 - m01*m10*m22 + m00*m11*m22;
     }
 
     // returns determinant
@@ -619,18 +619,15 @@ public:
     {
         auto det = determinant();
 
-        auto c00 = - m12*m21 + m11*m22;
-        auto c10 = + m12*m20 - m10*m22;
-        auto c20 = - m11*m20 + m10*m21;
-
-        auto c01 = + m02*m21 - m01*m22;
-        auto c11 = - m02*m20 + m00*m22;
-        auto c21 = + m01*m20 - m00*m21;
-
-        auto c02 = - m02*m11 + m01*m12;
-        auto c12 = + m02*m10 - m00*m12;
-        auto c22 = - m01*m10 + m00*m11;
-
+        auto c00 = -m12*m21 + m11*m22;
+        auto c10 =  m12*m20 - m10*m22;
+        auto c20 = -m11*m20 + m10*m21;
+        auto c01 =  m02*m21 - m01*m22;
+        auto c11 = -m02*m20 + m00*m22;
+        auto c21 =  m01*m20 - m00*m21;
+        auto c02 = -m02*m11 + m01*m12;
+        auto c12 =  m02*m10 - m00*m12;
+        auto c22 = -m01*m10 + m00*m11;
         auto c03 = m03*m12*m21 - m02*m13*m21 - m03*m11*m22 + m01*m13*m22 + m02*m11*m23 - m01*m12*m23;
         auto c13 = -(m03*m12*m20) + m02*m13*m20 + m03*m10*m22 - m00*m13*m22 - m02*m10*m23 + m00*m12*m23;
         auto c23 = m03*m11*m20 - m01*m13*m20 - m03*m10*m21 + m00*m13*m21 + m01*m10*m23 - m00*m11*m23;
@@ -801,6 +798,33 @@ bool isfinite(const matrix3x4_t<T>& a)
            std::isfinite(a.m03) && std::isfinite(a.m13) && std::isfinite(a.m23);
 }
 
+template <typename T>
+matrix3x4_t<T> inverse(const matrix3x4_t<T>& a, T& out_determinant)
+{
+    out_determinant = a.determinant();
+
+    return matrix3x4_t<T>::columns(
+        (-a.m12*a.m21 + a.m11*a.m22) / out_determinant,
+        (a.m12*a.m20 - a.m10*a.m22) / out_determinant,
+        (-a.m11*a.m20 + a.m10*a.m21) / out_determinant,
+        (a.m02*a.m21 - a.m01*a.m22) / out_determinant,
+        (-a.m02*a.m20 + a.m00*a.m22) / out_determinant,
+        (a.m01*a.m20 - a.m00*a.m21) / out_determinant,
+        (-a.m02*a.m11 + a.m01*a.m12) / out_determinant,
+        (a.m02*a.m10 - a.m00*a.m12) / out_determinant,
+        (-a.m01*a.m10 + a.m00*a.m11) / out_determinant,
+        (a.m03*a.m12*a.m21 - a.m02*a.m13*a.m21 - a.m03*a.m11*a.m22 + a.m01*a.m13*a.m22 + a.m02*a.m11*a.m23 - a.m01*a.m12*a.m23) / out_determinant,
+        (-(a.m03*a.m12*a.m20) + a.m02*a.m13*a.m20 + a.m03*a.m10*a.m22 - a.m00*a.m13*a.m22 - a.m02*a.m10*a.m23 + a.m00*a.m12*a.m23) / out_determinant,
+        (a.m03*a.m11*a.m20 - a.m01*a.m13*a.m20 - a.m03*a.m10*a.m21 + a.m00*a.m13*a.m21 + a.m01*a.m10*a.m23 - a.m00*a.m11*a.m23) / out_determinant
+    );
+}
+
+template <typename T>
+matrix3x4_t<T> inverse(const matrix3x4_t<T>& a)
+{
+    T det;
+    return intverse(a, det);
+}
 
 template <typename T>
 vector3_t<T> transform_coord(const vector3_t<T>& v, const matrix3x4_t<T>& m)
