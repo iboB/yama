@@ -606,6 +606,42 @@ public:
         m23 = 0;
         return *this;
     }
+
+    value_type determinant() const
+    {
+        return
+            m02*m11*m20 + m01*m12*m20 + m02*m10*m21 -
+            m00*m12*m21 - m01*m10*m22 + m00*m11*m22;
+    }
+
+    // returns determinant
+    value_type inverse()
+    {
+        auto det = determinant();
+
+        auto c00 = - m12*m21 + m11*m22;
+        auto c10 = + m12*m20 - m10*m22;
+        auto c20 = - m11*m20 + m10*m21;
+
+        auto c01 = + m02*m21 - m01*m22;
+        auto c11 = - m02*m20 + m00*m22;
+        auto c21 = + m01*m20 - m00*m21;
+
+        auto c02 = - m02*m11 + m01*m12;
+        auto c12 = + m02*m10 - m00*m12;
+        auto c22 = - m01*m10 + m00*m11;
+
+        auto c03 = m03*m12*m21 - m02*m13*m21 - m03*m11*m22 + m01*m13*m22 + m02*m11*m23 - m01*m12*m23;
+        auto c13 = -(m03*m12*m20) + m02*m13*m20 + m03*m10*m22 - m00*m13*m22 - m02*m10*m23 + m00*m12*m23;
+        auto c23 = m03*m11*m20 - m01*m13*m20 - m03*m10*m21 + m00*m13*m21 + m01*m10*m23 - m00*m11*m23;
+
+        m00 = c00 / det; m10 = c10 / det; m20 = c20 / det;
+        m01 = c01 / det; m11 = c11 / det; m21 = c21 / det;
+        m02 = c02 / det; m12 = c12 / det; m22 = c22 / det;
+        m03 = c03 / det; m13 = c13 / det; m23 = c23 / det;
+
+        return det;
+    }
 };
 
 template <typename T>
