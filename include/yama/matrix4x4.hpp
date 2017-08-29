@@ -1197,7 +1197,7 @@ template <typename T>
 matrix4x4_t<T> inverse(const matrix4x4_t<T>& a)
 {
     T det;
-    return intverse(a, det);
+    return inverse(a, det);
 }
 
 
