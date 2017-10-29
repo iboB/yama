@@ -120,12 +120,6 @@ typename std::enable_if<std::is_arithmetic<T>::value,
     return v;
 }
 
-namespace internal
-{
-    // used for sfinae
-    struct yama_tag {};
-}
-
 // can be used to make a type with defined `U at(integral n)` be used as a key in a std::map or in a std::set
 struct strict_weak_ordering
 {
