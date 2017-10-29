@@ -225,17 +225,33 @@ public:
         YAMA_ASSERT_WARN(!close(target, vector3_t<value_type>::zero()), "target vector shouldn't be zero");
 
         auto axis = cross(src, target);
-        auto axis_length = axis.normalize();
+        auto axis_length = axis.length();
 
         if (axis_length > constants_t<value_type>::EPSILON()) // not collinear
         {
+            axis /= axis_length; // normalize
             auto angle = acos(dot(src, target));
             return rotation_naxis(axis, angle);
         }
         else
         {
-            // collinear
-            return identity();
+            if (close(src, target))
+            {
+                // collinear
+                return identity();
+            }
+            else
+            {
+                // opposite
+                auto o = normalize(src.get_orthogonal());
+
+                return rows(
+                    2*sq(o.x) - 1, 2*o.y*o.x, 2*o.z*o.x, 0,
+                    2*o.x*o.y, 2*sq(o.y) - 1, 2*o.z*o.y, 0,
+                    2*o.x*o.z, 2*o.y*o.z, 2*sq(o.z) - 1, 0,
+                    0, 0, 0, 1
+                );
+            }
         }
     }
 

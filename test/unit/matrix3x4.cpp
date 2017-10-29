@@ -519,8 +519,15 @@ TEST_CASE("transform")
     CHECK(YamaApprox(m1) == m0);
 
     auto v0 = normalize(v(1, 2, 3));
+
+    CHECK(matrix3x4::rotation_vectors(v0, v0) == matrix3x4::identity());
+
     auto v1 = normalize(v(-3, 5, 11));
 
     m0 = matrix3x4::rotation_vectors(v0, v1);
     CHECK(YamaApprox(transform_coord(v0, m0)) == v1);
+
+    v1 = -v0;
+    m0 = matrix3x4::rotation_vectors(v0, v1);
+    CHECK(YamaApprox(transform_coord(v(1, 2, 3), m0)) == v(-1, -2, -3));
 }

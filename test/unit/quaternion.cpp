@@ -449,8 +449,15 @@ TEST_CASE("rotate")
     CHECK(YamaApprox(q1) == q0);
 
     auto v0 = normalize(v(1, 2, 3));
+
+    CHECK(quaternion::rotation_vectors(v0, v0) == quaternion::identity());
+
     v1 = normalize(v(-3, 5, 11));
 
     q0 = quaternion::rotation_vectors(v0, v1);
     CHECK(YamaApprox(rotate(v0, q0)) == v1);
+
+    v1 = -v0;
+    q0 = quaternion::rotation_vectors(v0, v1);
+    CHECK(YamaApprox(rotate(v(1, 2, 3), q0)) == v(-1, -2, -3));
 }
