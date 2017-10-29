@@ -1216,7 +1216,6 @@ matrix4x4_t<T> inverse(const matrix4x4_t<T>& a)
     return inverse(a, det);
 }
 
-
 template <typename T>
 vector3_t<T> transform_coord(const vector3_t<T>& v, const matrix4x4_t<T>& m)
 {
@@ -1227,6 +1226,19 @@ vector3_t<T> transform_coord(const vector3_t<T>& v, const matrix4x4_t<T>& m)
     out.x = (m(0, 0) * v.x + m(0, 1) * v.y + m(0, 2) * v.z + m(0, 3)) / w;
     out.y = (m(1, 0) * v.x + m(1, 1) * v.y + m(1, 2) * v.z + m(1, 3)) / w;
     out.z = (m(2, 0) * v.x + m(2, 1) * v.y + m(2, 2) * v.z + m(2, 3)) / w;
+
+    return out;
+}
+
+
+template <typename T>
+vector3_t<T> transform_normal(const vector3_t<T>& v, const matrix4x4_t<T>& m)
+{
+    vector3_t<T> out;
+
+    out.x = m(0, 0) * v.x + m(0, 1) * v.y + m(0, 2) * v.z;
+    out.y = m(1, 0) * v.x + m(1, 1) * v.y + m(1, 2) * v.z;
+    out.z = m(2, 0) * v.x + m(2, 1) * v.y + m(2, 2) * v.z;
 
     return out;
 }

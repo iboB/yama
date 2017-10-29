@@ -460,9 +460,11 @@ TEST_CASE("transform")
     const auto i = matrix3x4::identity();
     vector3 vec = v(1, 2, 3);
     CHECK(transform_coord(vec, i) == vec);
+    CHECK(transform_normal(vec, i) == vec);
 
     auto t = matrix3x4::translation(3, 1, -2);
     CHECK(transform_coord(vec, t) == v(4, 3, 1));
+    CHECK(transform_normal(vec, t) == vec);
 
     t = matrix3x4::translation(v(3, 1, -2));
     CHECK(transform_coord(vec, t) == v(4, 3, 1));
@@ -492,6 +494,9 @@ TEST_CASE("transform")
     CHECK(YamaApprox(transform_coord(ux, m0)) == ux);
     CHECK(YamaApprox(transform_coord(uy, m0)) == uz);
     CHECK(YamaApprox(transform_coord(uz, m0)) == -uy);
+    CHECK(YamaApprox(transform_normal(ux, m0)) == ux);
+    CHECK(YamaApprox(transform_normal(uy, m0)) == uz);
+    CHECK(YamaApprox(transform_normal(uz, m0)) == -uy);
 
     q0 = quaternion::rotation_y(constants::PI_HALF());
     m1 = matrix3x4::rotation_quaternion(q0);
@@ -500,6 +505,9 @@ TEST_CASE("transform")
     CHECK(YamaApprox(transform_coord(ux, m0)) == -uz);
     CHECK(YamaApprox(transform_coord(uy, m0)) == uy);
     CHECK(YamaApprox(transform_coord(uz, m0)) == ux);
+    CHECK(YamaApprox(transform_normal(ux, m0)) == -uz);
+    CHECK(YamaApprox(transform_normal(uy, m0)) == uy);
+    CHECK(YamaApprox(transform_normal(uz, m0)) == ux);
 
     q0 = quaternion::rotation_z(constants::PI_HALF());
     m1 = matrix3x4::rotation_quaternion(q0);
@@ -508,6 +516,9 @@ TEST_CASE("transform")
     CHECK(YamaApprox(transform_coord(ux, m0)) == uy);
     CHECK(YamaApprox(transform_coord(uy, m0)) == -ux);
     CHECK(YamaApprox(transform_coord(uz, m0)) == uz);
+    CHECK(YamaApprox(transform_normal(ux, m0)) == uy);
+    CHECK(YamaApprox(transform_normal(uy, m0)) == -ux);
+    CHECK(YamaApprox(transform_normal(uz, m0)) == uz);
 
     auto axis = v(1, 2, 3);
     auto angle = 2.66f;
@@ -526,8 +537,10 @@ TEST_CASE("transform")
 
     m0 = matrix3x4::rotation_vectors(v0, v1);
     CHECK(YamaApprox(transform_coord(v0, m0)) == v1);
+    CHECK(YamaApprox(transform_normal(v0, m0)) == v1);
 
     v1 = -v0;
     m0 = matrix3x4::rotation_vectors(v0, v1);
     CHECK(YamaApprox(transform_coord(v(1, 2, 3), m0)) == v(-1, -2, -3));
+    CHECK(YamaApprox(transform_normal(v(1, 2, 3), m0)) == v(-1, -2, -3));
 }

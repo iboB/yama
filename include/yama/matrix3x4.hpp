@@ -853,6 +853,19 @@ vector3_t<T> transform_coord(const vector3_t<T>& v, const matrix3x4_t<T>& m)
     return out;
 }
 
+template <typename T>
+vector3_t<T> transform_normal(const vector3_t<T>& v, const matrix3x4_t<T>& m)
+{
+    vector3_t<T> out;
+
+    out.x = m(0, 0) * v.x + m(0, 1) * v.y + m(0, 2) * v.z;
+    out.y = m(1, 0) * v.x + m(1, 1) * v.y + m(1, 2) * v.z;
+    out.z = m(2, 0) * v.x + m(2, 1) * v.y + m(2, 2) * v.z;
+
+    return out;
+}
+
+
 // type traits
 template <typename T>
 struct is_yama<matrix3x4_t<T>> : public std::true_type {};
