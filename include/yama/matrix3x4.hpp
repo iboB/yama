@@ -838,7 +838,7 @@ template <typename T>
 matrix3x4_t<T> inverse(const matrix3x4_t<T>& a)
 {
     T det;
-    return intverse(a, det);
+    return inverse(a, det);
 }
 
 template <typename T>
