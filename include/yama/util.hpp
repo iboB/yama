@@ -6,6 +6,7 @@
 // https://opensource.org/licenses/MIT
 //
 #pragma once
+#include <cstddef>
 #include <cmath>
 #include <type_traits>
 
