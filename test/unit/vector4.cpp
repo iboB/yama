@@ -5,8 +5,8 @@
 // See accompanying file LICENSE.txt or copy at
 // https://opensource.org/licenses/MIT
 //
-#include "common.hpp"
 #include "yama/vector4.hpp"
+#include "common.hpp"
 #include "yama/ext/vector4_ostream.hpp"
 
 using namespace yama;

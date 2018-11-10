@@ -5,8 +5,8 @@
 // See accompanying file LICENSE.txt or copy at
 // https://opensource.org/licenses/MIT
 //
-#include "common.hpp"
 #include "yama/matrix3x4.hpp"
+#include "common.hpp"
 #include "yama/ext/ostream.hpp"
 
 using namespace yama;
