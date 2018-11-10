@@ -1,5 +1,9 @@
 # Yama
 
+[![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/) [![Standard](https://img.shields.io/badge/C%2B%2B-11-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+[![Build Status](https://travis-ci.org/iboB/yama.svg?branch=master)](https://travis-ci.org/iboB/yama)
+
 Yama (Yet Another MAthematical library) is simple header-only mathematical library for game programming.
 
 ## Usage
