@@ -36,6 +36,12 @@ target_sources(yama INTERFACE
     ${src}/vector3.hpp
     ${src}/vector4.hpp
     ${src}/yama.hpp
+    ${src}/ext/matrix4x4_ostream.hpp
+    ${src}/ext/matrix3x4_ostream.hpp
+    ${src}/ext/quaternion_ostream.hpp
+    ${src}/ext/vector2_ostream.hpp
+    ${src}/ext/vector3_ostream.hpp
+    ${src}/ext/vector4_ostream.hpp
     ${src}/ext/ostream.hpp
 )
 target_include_directories(yama INTERFACE ${inc})

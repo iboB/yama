@@ -1,17 +1,14 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2018 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
 // https://opensource.org/licenses/MIT
 //
 #pragma once
-#include "yama/yama.hpp"
-#include "yama/ext/ostream.hpp"
+#include "yama/util.hpp"
+#include <iostream>
 #include "doctest/doctest.h"
-
-#include <cstring>
-
 
 template <typename Y>
 class YApprox

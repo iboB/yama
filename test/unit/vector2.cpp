@@ -1,11 +1,13 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2018 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
 // https://opensource.org/licenses/MIT
 //
 #include "common.hpp"
+#include "yama/vector2.hpp"
+#include "yama/ext/vector2_ostream.hpp"
 
 using namespace yama;
 using doctest::Approx;
