@@ -9,6 +9,7 @@
 #include "yama/util.hpp"
 #include <iostream>
 #include "doctest/doctest.h"
+#include <cstring> // for memcmp
 
 template <typename Y>
 class YApprox
