@@ -442,6 +442,7 @@ TEST_CASE("rotate")
     auto v1 = axis;
     angle = 1.44f;
     q0 = quaternion::rotation_axis(axis, angle);
+    CHECK(isfinite(q0));
 
     q0.to_axis_angle(axis, angle);
     q1 = quaternion::rotation_axis(axis, angle);
@@ -449,6 +450,7 @@ TEST_CASE("rotate")
 
     q1 *= q1;
     q0 = quaternion::rotation_axis(v1, 2.88f);
+    CHECK(isfinite(q0));
     CHECK(YamaApprox(q1) == q0);
 
     auto v0 = normalize(v(1, 2, 3));
@@ -458,9 +460,18 @@ TEST_CASE("rotate")
     v1 = normalize(v(-3, 5, 11));
 
     q0 = quaternion::rotation_vectors(v0, v1);
+    CHECK(isfinite(q0));
+    CHECK(YamaApprox(rotate(v0, q0)) == v1);
+
+    v1 = v0;
+    v1.y += 0.01f;
+    v1.normalize();
+    q0 = quaternion::rotation_vectors(v0, v1);
+    CHECK(isfinite(q0));
     CHECK(YamaApprox(rotate(v0, q0)) == v1);
 
     v1 = -v0;
     q0 = quaternion::rotation_vectors(v0, v1);
+    CHECK(isfinite(q0));
     CHECK(YamaApprox(rotate(v(1, 2, 3), q0)) == v(-1, -2, -3));
 }

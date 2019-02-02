@@ -130,15 +130,13 @@ public:
         YAMA_ASSERT_WARN(!close(target, vector3_t<value_type>::zero()), "target vector shouldn't be zero");
 
         auto axis = cross(src, target);
-        auto axis_length = axis.length();
+        auto axis_length_sq = axis.length_sq();
 
-        if (axis_length > constants_t<value_type>::EPSILON()) // not collinear
+        if (axis_length_sq > constants_t<value_type>::EPSILON()) // not collinear
         {
-            axis /= axis_length; // normalize
-            auto half_cos = dot(src, target);
-            auto cos_half = std::sqrt(value_type(0.5) + half_cos);
-            auto sin_half = std::sqrt(value_type(0.5) - half_cos);
-            return xyzw(axis.x * sin_half, axis.y * sin_half, axis.z * sin_half, cos_half);
+            auto d = dot(src, target);
+            auto c = cross(src, target);
+            return yama::normalize(xyzw(c.x, c.y, c.z, 1 + d));
         }
         else
         {
