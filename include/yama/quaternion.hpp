@@ -23,6 +23,12 @@ namespace yama
 {
 
 template <typename T>
+class quaternion_t;
+
+template <typename T>
+quaternion_t<T> normalize(const quaternion_t<T>& q);
+
+template <typename T>
 class quaternion_t
 {
 public:
