@@ -603,6 +603,14 @@ struct is_yama<vector4_t<T>> : public std::true_type {};
 template <typename T>
 struct is_vector<vector4_t<T>> : public std::true_type {};
 
+// casts
+template <typename V4_U, typename T>
+V4_U vector_cast(const vector4_t<T>& v)
+{
+    using U = typename V4_U::value_type;
+    return {U(v.x), U(v.y), U(v.z), U(v.w)};
+}
+
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 

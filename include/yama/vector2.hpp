@@ -572,6 +572,14 @@ struct is_yama<vector2_t<T>> : public std::true_type {};
 template <typename T>
 struct is_vector<vector2_t<T>> : public std::true_type {};
 
+// casts
+template <typename V2_U, typename T>
+V2_U vector_cast(const vector2_t<T>& v)
+{
+    using U = typename V2_U::value_type;
+    return {U(v.x), U(v.y)};
+}
+
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 
