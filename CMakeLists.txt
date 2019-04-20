@@ -23,6 +23,7 @@ set(src ${inc}/yama)
 add_library(yama INTERFACE)
 target_sources(yama INTERFACE
     ${src}/assert.hpp
+    ${src}/box.hpp
     ${src}/config.hpp
     ${src}/dim.hpp
     ${src}/matrix3x4.hpp
