@@ -15,6 +15,16 @@ public:
     ////////////////////////////////////////////////////////
     // named constructors
 
+    static boxnt zero()
+    {
+        boxnt ret;
+
+        ret.min = dim_vector::zero();
+        ret.max = dim_vector::zero();
+
+        return ret;
+    }
+
     static boxnt inverted()
     {
         boxnt ret;
@@ -86,6 +96,12 @@ public:
     {
         min = yama::min(min, point);
         max = yama::max(max, point);
+    }
+
+    void add_point_max_complement(const dim_vector& point, const dim_vector& complement = dim_vector::uniform(1))
+    {
+        min = yama::min(min, point);
+        max = yama::max(max, point + complement);
     }
 
     bool is_valid() const
