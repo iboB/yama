@@ -114,6 +114,11 @@ public:
         return true;
     }
 
+    void merge(const boxnt& other) {
+        min = yama::min(min, other.min);
+        max = yama::max(max, other.max);
+    }
+
     dim_vector min;
     dim_vector max;
 };
