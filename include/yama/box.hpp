@@ -80,7 +80,7 @@ public:
             if (min.at(i) >= other.max.at(i))
                 return false;
 
-            if (max.at(i) < other.min.at(i))
+            if (max.at(i) <= other.min.at(i))
                 return false;
         }
 
