@@ -108,7 +108,7 @@ public:
     {
         for(size_t i=0; i<dimension; ++i)
         {
-            if (max.at(i) < min.at(i)) return false;
+            if (max.at(i) <= min.at(i)) return false;
         }
 
         return true;
