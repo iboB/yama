@@ -124,6 +124,11 @@ public:
 };
 
 template <size_t D, typename T>
+bool operator==(const boxnt<D, T>& a, const boxnt<D, T>& b) {
+    return a.min == b.min && a.max == b.max;
+}
+
+template <size_t D, typename T>
 boxnt<D, T> intersection(const boxnt<D, T>& a, const boxnt<D, T>& b)
 {
     boxnt<D, T> ret;
