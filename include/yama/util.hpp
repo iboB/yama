@@ -60,7 +60,7 @@ typename std::enable_if<std::is_signed<T>::value && std::is_integral<T>::value,
 
 template <typename T>
 typename std::enable_if<std::is_unsigned<T>::value,
-    T>::type sign(const T& t)
+    T>::type sign(const T& )
 {
     return 1;
 }
