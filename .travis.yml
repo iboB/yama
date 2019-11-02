@@ -10,25 +10,19 @@ notifications:
 git:
   depth: 5
 
-env:
-  - BUILD_TYPE=Debug
-  - BUILD_TYPE=Release
-
 matrix:
   include:
     # GCC 5
-    - dist: xenial
-
-    # GCC 7
-    - dist: bionic
+    - env: BUILD_TYPE=Debug
+    - env: BUILD_TYPE=Release
 
     # Clang
     - compiler: clang
-      env: ADDITIONAL_CXX_FLAGS="-g -fno-omit-frame-pointer -fsanitize=address,undefined"
+      env: BUILD_TYPE=Debug ADDITIONAL_CXX_FLAGS="-g -fno-omit-frame-pointer -fsanitize=address,undefined"
 
     # Xcode Clang
-    - env: ADDITIONAL_CXX_FLAGS="-g -fno-omit-frame-pointer -fsanitize=address,undefined"
-      os: osx
+    - os: osx
+      env: BUILD_TYPE=Debug ADDITIONAL_CXX_FLAGS="-g -fno-omit-frame-pointer -fsanitize=address,undefined"
 
 script:
   # sanitize options
