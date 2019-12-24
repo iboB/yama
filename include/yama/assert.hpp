@@ -1,5 +1,5 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2020 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
@@ -7,7 +7,6 @@
 //
 #pragma once
 
-#include "config.hpp"
 #include <cassert>
 
 #define YAMA_ASSERT_LEVEL_NONE 0
@@ -39,16 +38,6 @@
 #   define YAMA_ASSERT_WARN(condition, text) YAMA_ASSERT(condition, text)
 #else
 #   error "Yama: Invalid assertion level."
-#endif
-
-#if YAMA_HAS_CXX14
-#   define YAMA_ASSERT_CRIT14(condition, text) YAMA_ASSERT_CRIT(condition, text)
-#   define YAMA_ASSERT_BAD14(condition, text) YAMA_ASSERT_BAD(condition, text)
-#   define YAMA_ASSERT_WARN14(condition, text) YAMA_ASSERT_WARN(condition, text)
-#else
-#   define YAMA_ASSERT_CRIT14 _YAMA_NOOP
-#   define YAMA_ASSERT_BAD14 _YAMA_NOOP
-#   define YAMA_ASSERT_WARN14 _YAMA_NOOP
 #endif
 
 #define YAMA_ASSERT(cond, msg) assert((cond) && msg)

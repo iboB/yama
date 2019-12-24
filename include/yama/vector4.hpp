@@ -1,5 +1,5 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2020 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
@@ -132,7 +132,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT14(i < value_count, "yama::vector4_t index overflow");
+        YAMA_ASSERT_CRIT(i < value_count, "yama::vector4_t index overflow");
         return data()[i];
     }
 

@@ -1,5 +1,5 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2020 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
@@ -47,7 +47,7 @@ public:
     // named constructors
     static constexpr vector3_t coord(const value_type& x, const value_type& y, const value_type& z)
     {
-        return{ x, y, z };
+        return {x, y, z};
     }
 
     static constexpr vector3_t uniform(const value_type& s)
@@ -127,7 +127,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT14(i < value_count, "yama::vector3_t index overflow");
+        YAMA_ASSERT_CRIT(i < value_count, "yama::vector3_t index overflow");
         return data()[i];
     }
 

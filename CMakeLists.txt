@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 3.2.2)
+cmake_minimum_required(VERSION 3.10)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-    # if picobench is built as root, activate folders
+    # if built as root, activate folders
     set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
     # demo means that the project is built from the root folder and not from
@@ -24,7 +24,6 @@ add_library(yama INTERFACE)
 target_sources(yama INTERFACE
     ${src}/assert.hpp
     ${src}/box.hpp
-    ${src}/config.hpp
     ${src}/dim.hpp
     ${src}/matrix3x4.hpp
     ${src}/matrix4x4.hpp
@@ -46,13 +45,6 @@ target_sources(yama INTERFACE
     ${src}/ext/ostream.hpp
 )
 target_include_directories(yama INTERFACE ${inc})
-target_compile_features(yama INTERFACE
-    cxx_auto_type
-    cxx_constexpr
-    cxx_delegating_constructors
-    cxx_range_for
-    cxx_right_angle_brackets
-)
 
 if(${YAMA_BUILD_UNIT_TESTS})
     enable_testing()

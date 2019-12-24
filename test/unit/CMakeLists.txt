@@ -12,4 +12,10 @@ add_executable(yama-unit-test
 
 target_link_libraries(yama-unit-test yama)
 
+set_target_properties(yama-unit-test PROPERTIES
+    CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED TRUE
+    CXX_EXTENSIONS OFF
+)
+
 add_test(yama-unit-test yama-unit-test)

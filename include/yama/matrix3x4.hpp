@@ -1,5 +1,5 @@
 // Yama
-// Copyright (c) 2016-2017 Borislav Stanimirov
+// Copyright (c) 2016-2020 Borislav Stanimirov
 //
 // Distributed under the MIT Software License
 // See accompanying file LICENSE.txt or copy at
@@ -122,7 +122,7 @@ public:
 
     static constexpr matrix3x4_t scaling_uniform(const value_type& s)
     {
-        YAMA_ASSERT_WARN14(!close(s, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN(!close(s, value_type(0)), "scale shouldn't be zero");
         return columns(
             s, 0, 0,
             0, s, 0,
@@ -133,9 +133,9 @@ public:
 
     static constexpr matrix3x4_t scaling(const value_type& x, const value_type& y, const value_type& z)
     {
-        YAMA_ASSERT_WARN14(!close(x, value_type(0)), "scale shouldn't be zero");
-        YAMA_ASSERT_WARN14(!close(y, value_type(0)), "scale shouldn't be zero");
-        YAMA_ASSERT_WARN14(!close(z, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN(!close(x, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN(!close(y, value_type(0)), "scale shouldn't be zero");
+        YAMA_ASSERT_WARN(!close(z, value_type(0)), "scale shouldn't be zero");
         return columns(
             x, 0, 0,
             0, y, 0,
@@ -237,7 +237,7 @@ public:
             {
                 // opposite
                 auto o = normalize(src.get_orthogonal());
-                
+
                 return rows(
                     2 * sq(o.x) - 1, 2 * o.y*o.x, 2 * o.z*o.x, 0,
                     2 * o.x*o.y, 2 * sq(o.y) - 1, 2 * o.z*o.y, 0,
@@ -316,7 +316,7 @@ public:
 
     constexpr const value_type& at(size_type i) const
     {
-        YAMA_ASSERT_CRIT14(i < value_count, "yama::matrix3x4_t index overflow");
+        YAMA_ASSERT_CRIT(i < value_count, "yama::matrix3x4_t index overflow");
         return data()[i];
     }
 
@@ -338,7 +338,7 @@ public:
 
     constexpr const value_type* column(size_t i) const
     {
-        YAMA_ASSERT_CRIT14(i < columns_count, "yama::matrix3x4_t column index overflow");
+        YAMA_ASSERT_CRIT(i < columns_count, "yama::matrix3x4_t column index overflow");
         return data() + rows_count * i;
     }
 
