@@ -11,5 +11,6 @@
 #include "vector3_ostream.hpp"
 #include "vector4_ostream.hpp"
 #include "quaternion_ostream.hpp"
+#include "matrix3x3_ostream.hpp"
 #include "matrix3x4_ostream.hpp"
 #include "matrix4x4_ostream.hpp"
