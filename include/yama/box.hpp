@@ -125,7 +125,7 @@ public:
         return (max + min) / T(2);
     }
 
-    boxnt operator+(const dim_vector& translation)
+    boxnt operator+(const dim_vector& translation) const
     {
         return {min + translation, max + translation};
     }
