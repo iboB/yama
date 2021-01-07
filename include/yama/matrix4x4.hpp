@@ -22,12 +22,12 @@ public:
     T m02, m12, m22, m32;
     T m03, m13, m23, m33;
 
-    typedef T value_type;
-    typedef size_t size_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef typename std::reverse_iterator<iterator> reverse_iterator;
-    typedef typename std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using value_type = T;
+    using size_type = size_t;
+    using iterator = T*;
+    using const_iterator = const T*;
+    using reverse_iterator = typename std::reverse_iterator<iterator>;
+    using const_reverse_iterator = typename std::reverse_iterator<const_iterator>;
 
     static constexpr size_type rows_count = 4;
     static constexpr size_type columns_count = 4;
@@ -1253,8 +1253,8 @@ struct is_matrix<matrix4x4_t<T>> : public std::true_type {};
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 
-typedef matrix4x4_t<preferred_type> matrix4x4;
-typedef matrix4x4 matrix;
+using matrix4x4 = matrix4x4_t<preferred_type>;
+using matrix = matrix4x4;
 
 #endif
 

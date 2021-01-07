@@ -31,12 +31,12 @@ class vector4_t
 public:
     T x, y, z, w;
 
-    typedef T value_type;
-    typedef size_t size_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef typename std::reverse_iterator<iterator> reverse_iterator;
-    typedef typename std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using value_type = T;
+    using size_type = size_t;
+    using iterator = T*;
+    using const_iterator = const T*;
+    using reverse_iterator = typename std::reverse_iterator<iterator>;
+    using const_reverse_iterator = typename std::reverse_iterator<const_iterator>;
 
     static constexpr size_type value_count = 4;
 
@@ -614,8 +614,8 @@ V4_U vector_cast(const vector4_t<T>& v)
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 
-typedef vector4_t<preferred_type> vector4;
-typedef vector4 point4;
+using vector4 = vector4_t<preferred_type>;
+using point4 = vector4;
 
 constexpr vector4 v(preferred_type x, preferred_type y, preferred_type z, preferred_type w)
 {

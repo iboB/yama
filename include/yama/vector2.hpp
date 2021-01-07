@@ -31,12 +31,12 @@ class vector2_t
 public:
     T x, y;
 
-    typedef T value_type;
-    typedef size_t size_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef typename std::reverse_iterator<iterator> reverse_iterator;
-    typedef typename std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using value_type = T;
+    using size_type = size_t;
+    using iterator = T*;
+    using const_iterator = const T*;
+    using reverse_iterator = typename std::reverse_iterator<iterator>;
+    using const_reverse_iterator = typename std::reverse_iterator<const_iterator>;
 
     static constexpr size_type value_count = 2;
 
@@ -583,8 +583,8 @@ V2_U vector_cast(const vector2_t<T>& v)
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 
-typedef vector2_t<preferred_type> vector2;
-typedef vector2 point2;
+using vector2 = vector2_t<preferred_type>;
+using point2 = vector2;
 
 constexpr vector2 v(preferred_type x, preferred_type y)
 {

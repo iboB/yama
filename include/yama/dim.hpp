@@ -24,7 +24,7 @@ struct dim<2>
     using vector_t = vector2_t<T>;
 
 #if !defined(YAMA_NO_SHORTHAND)
-    typedef vector2 vector;
+    using vector = vector2;
 #endif
 };
 
@@ -35,7 +35,7 @@ struct dim<3>
     using vector_t = vector3_t<T>;
 
 #if !defined(YAMA_NO_SHORTHAND)
-    typedef vector3 vector;
+    using vector = vector3;
 #endif
 };
 
@@ -46,7 +46,7 @@ struct dim<4>
     using vector_t = vector4_t<T>;
 
 #if !defined(YAMA_NO_SHORTHAND)
-    typedef vector4 vector;
+    using vector = vector4;
 #endif
 };
 

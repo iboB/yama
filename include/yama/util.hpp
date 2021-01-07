@@ -35,7 +35,7 @@ public:
 
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
-typedef constants_t<preferred_type> constants;
+using constants = constants_t<preferred_type>;
 #endif
 
 template <typename T>

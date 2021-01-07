@@ -34,12 +34,12 @@ class quaternion_t
 public:
     T x, y, z, w;
 
-    typedef T value_type;
-    typedef size_t size_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
-    typedef typename std::reverse_iterator<iterator> reverse_iterator;
-    typedef typename std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using value_type = T;
+    using size_type = size_t;
+    using iterator = T*;
+    using const_iterator = const T*;
+    using reverse_iterator = typename std::reverse_iterator<iterator>;
+    using const_reverse_iterator = typename std::reverse_iterator<const_iterator>;
 
     static constexpr size_type value_count = 4;
 
@@ -731,7 +731,7 @@ struct is_yama<quaternion_t<T>> : public std::true_type {};
 // shorthand
 #if !defined(YAMA_NO_SHORTHAND)
 
-typedef quaternion_t<preferred_type> quaternion;
+using quaternion = quaternion_t<preferred_type>;
 
 #endif
 

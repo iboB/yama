@@ -16,7 +16,7 @@
 namespace yama
 {
 
-typedef YAMA_PREFFERED_TYPE preferred_type;
+using preferred_type = YAMA_PREFFERED_TYPE;
 
 }
 

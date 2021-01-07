@@ -15,7 +15,7 @@ template <typename Y>
 class YApprox
 {
 public:
-    typedef typename Y::value_type value_type;
+    using value_type = typename Y::value_type;
 
     explicit YApprox(const Y& value)
         : e(yama::constants_t<value_type>::EPSILON())

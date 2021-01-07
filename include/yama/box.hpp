@@ -10,7 +10,7 @@ class boxnt
 {
 public:
     static const size_t dimension = D;
-    typedef typename dim<D>::template vector_t<T> dim_vector;
+    using dim_vector = typename dim<D>::template vector_t<T>;
 
     ////////////////////////////////////////////////////////
     // named constructors
