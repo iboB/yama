@@ -12,7 +12,7 @@ if(NOT MSVC)
     if(USE_TSAN)
         set(DEMO_SAN_FLAGS "-fsanitize=thread -g")
     elseif(USE_ASAN)
-        set(DEMO_SAN_FLAGS "-fsanitize=address,undefined,leak -pthread -g")
+        set(DEMO_SAN_FLAGS "-fsanitize=address,undefined -pthread -g")
     endif()
 
     if(USE_CLANG_TIDY)
