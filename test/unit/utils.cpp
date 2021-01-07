@@ -16,20 +16,20 @@ TEST_SUITE_BEGIN("utils");
 
 TEST_CASE("constants")
 {
-    CHECK(Approx(constants_t<double>::PI()) == M_PI);
-    CHECK(Approx(constants_t<double>::PI()) == constants_t<float>::PI());
-    CHECK(Approx(constants_t<double>::PI_HALF()) == M_PI / 2);
-    CHECK(Approx(constants_t<double>::PI_D4()) == M_PI / 4);
-    CHECK(Approx(constants_t<double>::PI_DBL()) == M_PI * 2);
-    CHECK(Approx(constants_t<double>::OVER_PI()) == 1 / M_PI);
-    CHECK(Approx(constants_t<double>::E()) == M_E);
-    CHECK(Approx(constants_t<double>::SQRT_2()) == std::sqrt(2.0));
-    CHECK(constants_t<double>::EPSILON ()> 0);
-    CHECK(constants_t<double>::EPSILON_HIGH ()> 0);
-    CHECK(constants_t<double>::EPSILON_LOW ()> 0);
-    CHECK(constants_t<double>::EPSILON_LOW ()< 1);
-    CHECK(constants_t<double>::EPSILON ()< constants_t<double>::EPSILON_LOW());
-    CHECK(constants_t<double>::EPSILON_HIGH ()< constants_t<double>::EPSILON());
+    CHECK(Approx(constants_t<double>::PI) == M_PI);
+    CHECK(Approx(constants_t<double>::PI) == constants_t<float>::PI);
+    CHECK(Approx(constants_t<double>::PI_HALF) == M_PI / 2);
+    CHECK(Approx(constants_t<double>::PI_D4) == M_PI / 4);
+    CHECK(Approx(constants_t<double>::PI_DBL) == M_PI * 2);
+    CHECK(Approx(constants_t<double>::OVER_PI) == 1 / M_PI);
+    CHECK(Approx(constants_t<double>::E) == M_E);
+    CHECK(Approx(constants_t<double>::SQRT_2) == std::sqrt(2.0));
+    CHECK(constants_t<double>::EPSILON > 0);
+    CHECK(constants_t<double>::EPSILON_HIGH > 0);
+    CHECK(constants_t<double>::EPSILON_LOW > 0);
+    CHECK(constants_t<double>::EPSILON_LOW < 1);
+    CHECK(constants_t<double>::EPSILON < constants_t<double>::EPSILON_LOW);
+    CHECK(constants_t<double>::EPSILON_HIGH < constants_t<double>::EPSILON);
 }
 
 TEST_CASE("functions")
@@ -53,11 +53,11 @@ TEST_CASE("functions")
     CHECK(Approx(lerp(4., 7., 0.3333333)) == 5.);
     CHECK(Approx(lerp(1.f, 5.f, 0.25f)) == 2.f);
 
-    CHECK(Approx(rad_to_deg(constants_t<double>::PI_HALF())) == 90);
-    CHECK(Approx(rad_to_deg(constants_t<double>::PI() / 3)) == 60);
+    CHECK(Approx(rad_to_deg(constants_t<double>::PI_HALF)) == 90);
+    CHECK(Approx(rad_to_deg(constants_t<double>::PI / 3)) == 60);
 
-    CHECK(Approx(deg_to_rad(60.f)) == constants::PI() / 3);
-    CHECK(Approx(deg_to_rad(90.f)) == constants::PI_HALF());
+    CHECK(Approx(deg_to_rad(60.f)) == constants::PI / 3);
+    CHECK(Approx(deg_to_rad(90.f)) == constants::PI_HALF);
 
     CHECK(close(1, 3, 3));
     CHECK(close(1, 1));

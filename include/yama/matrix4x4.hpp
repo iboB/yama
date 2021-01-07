@@ -227,7 +227,7 @@ public:
         auto axis = cross(src, target);
         auto axis_length = axis.length();
 
-        if (axis_length > constants_t<value_type>::EPSILON()) // not collinear
+        if (axis_length > constants_t<value_type>::EPSILON) // not collinear
         {
             axis /= axis_length; // normalize
             auto angle = acos(dot(src, target));
@@ -1044,7 +1044,7 @@ bool operator!=(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b)
 }
 
 template <typename T>
-bool close(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON())
+bool close(const matrix4x4_t<T>& a, const matrix4x4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON)
 {
     return
         close(a.m00, b.m00, epsilon) && close(a.m10, b.m10, epsilon) && close(a.m20, b.m20, epsilon) && close(a.m30, b.m30, epsilon) &&

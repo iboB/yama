@@ -401,7 +401,7 @@ TEST_CASE("rotate")
     CHECK(YamaApprox(quaternion::rotation_axis(uy, 0.13f)) == quaternion::rotation_y(0.13f));
     CHECK(YamaApprox(quaternion::rotation_axis(uz, 1.22f)) == quaternion::rotation_z(1.22f));
 
-    auto q0 = quaternion::rotation_x(constants::PI_HALF());
+    auto q0 = quaternion::rotation_x(constants::PI_HALF);
     CHECK(YamaApprox(rotate(ux, q0)) == ux);
     CHECK(YamaApprox(rotate(uy, q0)) == uz);
     CHECK(YamaApprox(rotate(uz, q0)) == -uy);
@@ -410,25 +410,25 @@ TEST_CASE("rotate")
     float angle;
     q0.to_axis_angle(axis, angle);
     CHECK(YamaApprox(axis) == ux);
-    CHECK(Approx(angle) == constants::PI_HALF());
+    CHECK(Approx(angle) == constants::PI_HALF);
 
-    q0 = quaternion::rotation_y(constants::PI_HALF());
+    q0 = quaternion::rotation_y(constants::PI_HALF);
     CHECK(YamaApprox(rotate(ux, q0)) == -uz);
     CHECK(YamaApprox(rotate(uy, q0)) == uy);
     CHECK(YamaApprox(rotate(uz, q0)) == ux);
 
     q0.to_axis_angle(axis, angle);
     CHECK(YamaApprox(axis) == uy);
-    CHECK(Approx(angle) == constants::PI_HALF());
+    CHECK(Approx(angle) == constants::PI_HALF);
 
-    q0 = quaternion::rotation_z(constants::PI_HALF());
+    q0 = quaternion::rotation_z(constants::PI_HALF);
     CHECK(YamaApprox(rotate(ux, q0)) == uy);
     CHECK(YamaApprox(rotate(uy, q0)) == -ux);
     CHECK(YamaApprox(rotate(uz, q0)) == uz);
 
     q0.to_axis_angle(axis, angle);
     CHECK(YamaApprox(axis) == uz);
-    CHECK(Approx(angle) == constants::PI_HALF());
+    CHECK(Approx(angle) == constants::PI_HALF);
 
     axis = v(1, 2, 3);
     angle = 2.66f;

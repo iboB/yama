@@ -20,17 +20,17 @@ template <typename T>
 class constants_t
 {
 public:
-    static constexpr T PI() { return T(3.1415926535897932384626433832795); }
-    static constexpr T PI_HALF() { return T(1.5707963267948966192313216916398); }
-    static constexpr T PI_D4() { return T(0.78539816339744830961566084581988); } // pi / 4
-    static constexpr T PI_DBL() { return T(6.283185307179586476925286766559); } // 2*pi
-    static constexpr T OVER_PI() { return T(0.31830988618379067153776752674503); } // 1/pi
-    static constexpr T E() { return T(2.71828182845904523536028747135266249); } //natural constant
-    static constexpr T SQRT_2() { return T(1.4142135623730950488016887242097); } //sqrt(2)
+    static inline constexpr T PI = T(3.1415926535897932384626433832795);
+    static inline constexpr T PI_HALF = T(1.5707963267948966192313216916398);
+    static inline constexpr T PI_D4 = T(0.78539816339744830961566084581988); // pi / 4
+    static inline constexpr T PI_DBL = T(6.283185307179586476925286766559); // 2*pi
+    static inline constexpr T OVER_PI = T(0.31830988618379067153776752674503); // 1/pi
+    static inline constexpr T E = T(2.71828182845904523536028747135266249); //natural constant
+    static inline constexpr T SQRT_2 = T(1.4142135623730950488016887242097); //sqrt(2)
 
-    static constexpr T EPSILON() { return T(1e-5); } //epsilon for floating point equalities
-    static constexpr T EPSILON_LOW() { return T(1e-3); } //low precision epsilon
-    static constexpr T EPSILON_HIGH() { return T(1e-7); } //high precision epsilon
+    static inline constexpr T EPSILON = T(1e-5); //epsilon for floating point equalities
+    static inline constexpr T EPSILON_LOW = T(1e-3); //low precision epsilon
+    static inline constexpr T EPSILON_HIGH = T(1e-7); //high precision epsilon
 };
 
 // shorthand
@@ -80,18 +80,18 @@ T lerp(const T& from, const T& to, const S& ratio)
 template <typename T>
 T rad_to_deg(const T& radians)
 {
-    return radians * (T(180) / constants_t<T>::PI());
+    return radians * (T(180) / constants_t<T>::PI);
 }
 
 template <typename T>
 T deg_to_rad(const T& degrees)
 {
-    return degrees * (constants_t<T>::PI() / T(180));
+    return degrees * (constants_t<T>::PI / T(180));
 }
 
 template <typename T>
 typename std::enable_if<std::is_arithmetic<T>::value,
-    bool>::type close(const T& a, const T& b, const T& epsilon = constants_t<T>::EPSILON())
+    bool>::type close(const T& a, const T& b, const T& epsilon = constants_t<T>::EPSILON)
 {
     return !(std::abs(a - b) > epsilon);
 }

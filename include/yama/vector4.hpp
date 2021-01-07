@@ -417,7 +417,7 @@ bool operator!=(const vector4_t<T>& a, const vector4_t<T>& b)
 }
 
 template <typename T>
-bool close(const vector4_t<T>& a, const vector4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON())
+bool close(const vector4_t<T>& a, const vector4_t<T>& b, const T& epsilon = constants_t<T>::EPSILON)
 {
     return close(a.x, b.x, epsilon) && close(a.y, b.y, epsilon) && close(a.z, b.z, epsilon) && close(a.w, b.w, epsilon);
 }

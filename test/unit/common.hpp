@@ -18,7 +18,7 @@ public:
     using value_type = typename Y::value_type;
 
     explicit YApprox(const Y& value)
-        : e(yama::constants_t<value_type>::EPSILON())
+        : e(yama::constants_t<value_type>::EPSILON)
         , v(value)
     {
 
