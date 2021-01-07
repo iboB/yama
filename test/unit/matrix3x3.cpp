@@ -12,7 +12,7 @@
 using namespace yama;
 using doctest::Approx;
 
-TEST_SUITE("matrix3x3");
+TEST_SUITE_BEGIN("matrix3x3");
 
 TEST_CASE("construction")
 {
@@ -48,16 +48,16 @@ TEST_CASE("construction")
     CHECK(memcmp(f1, &m1, 9 * sizeof(float)) == 0);
 
     auto m2 = matrix3::rows(1, 4, 7, 2, 5, 8, 3, 6, 9);
-    CHECK(m1.m00 == 1);
-    CHECK(m1.m10 == 2);
-    CHECK(m1.m20 == 3);
-    CHECK(m1.m01 == 4);
-    CHECK(m1.m11 == 5);
-    CHECK(m1.m21 == 6);
-    CHECK(m1.m02 == 7);
-    CHECK(m1.m12 == 8);
-    CHECK(m1.m22 == 9);
-    CHECK(memcmp(f1, &m1, 9 * sizeof(float)) == 0);
+    CHECK(m2.m00 == 1);
+    CHECK(m2.m10 == 2);
+    CHECK(m2.m20 == 3);
+    CHECK(m2.m01 == 4);
+    CHECK(m2.m11 == 5);
+    CHECK(m2.m21 == 6);
+    CHECK(m2.m02 == 7);
+    CHECK(m2.m12 == 8);
+    CHECK(m2.m22 == 9);
+    CHECK(memcmp(f1, &m2, 9 * sizeof(float)) == 0);
 
     auto m3 = matrix3x3_t<float>::uniform(3);
     CHECK(m3.m00 == 3);

@@ -12,7 +12,7 @@
 using namespace yama;
 using doctest::Approx;
 
-TEST_SUITE("vector3");
+TEST_SUITE_BEGIN("vector3");
 
 TEST_CASE("construction")
 {

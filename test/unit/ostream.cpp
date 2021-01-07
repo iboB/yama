@@ -11,7 +11,7 @@
 
 using namespace yama;
 
-TEST_SUITE("ext_ostream");
+TEST_SUITE_BEGIN("ext_ostream");
 
 static void clr(std::ostringstream& o)
 {

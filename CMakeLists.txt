@@ -1,50 +1,27 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-    # if built as root, activate folders
-    set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-
-    # demo means that the project is built from the root folder and not from
-    # add_subdirectory
-    # this means that subrojects (examples, tests) will be activated by default
-    set(yama_is_demo ON)
+    # dev_mode is used below to make life simpler for developers
+    # it enables some configurations and the defaults for building tests and examples
+    # which typically wouldn't be built if confy is a subdirectory of another project
+    set(dev_mode ON)
 else()
-    set(yama_is_demo OFF)
+    set(dev_mode OFF)
 endif()
 
 project(yama)
 
-option(YAMA_BUILD_UNIT_TESTS "yama: build tests" ${yama_is_demo})
-mark_as_advanced(YAMA_BUILD_UNIT_TESTS)
+option(YAMA_BUILD_UNIT_TESTS "yama: build tests" ${dev_mode})
+option(YAMA_BUILD_SCRATCH "yama: build scratch project for testing and experiments" ${dev_mode})
 
-set(inc ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(src ${inc}/yama)
+mark_as_advanced(YAMA_BUILD_UNIT_TESTS YAMA_BUILD_SCRATCH)
+
+if(dev_mode)
+    include(./dev.cmake)
+endif()
 
 add_library(yama INTERFACE)
-target_sources(yama INTERFACE
-    ${src}/assert.hpp
-    ${src}/box.hpp
-    ${src}/dim.hpp
-    ${src}/matrix3x4.hpp
-    ${src}/matrix4x4.hpp
-    ${src}/quaternion.hpp
-    ${src}/shorthand.hpp
-    ${src}/type_traits.hpp
-    ${src}/util.hpp
-    ${src}/vector_xyzw.hpp
-    ${src}/vector2.hpp
-    ${src}/vector3.hpp
-    ${src}/vector4.hpp
-    ${src}/yama.hpp
-    ${src}/ext/matrix4x4_ostream.hpp
-    ${src}/ext/matrix3x4_ostream.hpp
-    ${src}/ext/quaternion_ostream.hpp
-    ${src}/ext/vector2_ostream.hpp
-    ${src}/ext/vector3_ostream.hpp
-    ${src}/ext/vector4_ostream.hpp
-    ${src}/ext/ostream.hpp
-)
-target_include_directories(yama INTERFACE ${inc})
+target_include_directories(yama INTERFACE include)
 
 if(${YAMA_BUILD_UNIT_TESTS})
     enable_testing()

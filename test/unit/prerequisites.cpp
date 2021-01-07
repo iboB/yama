@@ -117,7 +117,7 @@ union foo
     quaternion q;
 };
 
-TEST_SUITE("prerequisites");
+TEST_SUITE_BEGIN("prerequisites");
 
 class nrvo_test
 {

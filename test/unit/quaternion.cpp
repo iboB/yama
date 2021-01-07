@@ -18,7 +18,7 @@ quaternion q(float x, float y, float z, float w)
     return quaternion::xyzw(x, y, z, w);
 }
 
-TEST_SUITE("quaternion");
+TEST_SUITE_BEGIN("quaternion");
 
 TEST_CASE("construction")
 {

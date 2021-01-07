@@ -8,7 +8,7 @@
 #include "common.hpp"
 #include "yama/vector_xyzw.hpp"
 
-TEST_SUITE("vector_xyzw");
+TEST_SUITE_BEGIN("vector_xyzw");
 
 using namespace yama;
 

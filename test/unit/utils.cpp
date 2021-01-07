@@ -12,7 +12,7 @@
 using namespace yama;
 using doctest::Approx;
 
-TEST_SUITE("utils");
+TEST_SUITE_BEGIN("utils");
 
 TEST_CASE("constants")
 {
