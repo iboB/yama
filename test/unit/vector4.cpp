@@ -280,6 +280,10 @@ TEST_CASE("members")
     CHECK(v0.reflection(v(0, 1, 0, 0)) == v(1, 2, 5, 3));
     v0.normalize();
     CHECK(YamaApprox(v0.reflection(v0)) == -v0);
+
+    v0 = v(2, 3, 4, 5);
+    CHECK(v0.sum() == 14);
+    CHECK(v0.product() == 120);
 }
 
 TEST_CASE("ops")

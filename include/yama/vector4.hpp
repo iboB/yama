@@ -361,9 +361,14 @@ public:
         return coord(x - dd * normal.x, y - dd * normal.y, z - dd * normal.z, w - dd * normal.w);
     }
 
-    value_type product() const
+    constexpr value_type product() const
     {
         return x * y * z * w;
+    }
+
+    constexpr value_type sum() const
+    {
+        return x + y + z + w;
     }
 };
 

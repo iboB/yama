@@ -226,6 +226,10 @@ TEST_CASE("members")
     CHECK(v0.reflection(v(0, 1)) == v(1, 2));
     v0.normalize();
     CHECK(YamaApprox(v0.reflection(v0)) == -v0);
+
+    v0 = v(2, 3);
+    CHECK(v0.sum() == 5);
+    CHECK(v0.product() == 6);
 }
 
 TEST_CASE("ops")

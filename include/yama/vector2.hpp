@@ -335,9 +335,14 @@ public:
         return coord(-y, x);
     }
 
-    value_type product() const
+    constexpr value_type product() const
     {
         return x * y;
+    }
+
+    constexpr value_type sum() const
+    {
+        return x + y;
     }
 };
 

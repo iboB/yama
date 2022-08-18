@@ -373,9 +373,14 @@ public:
         }
     }
 
-    value_type product() const
+    constexpr value_type product() const
     {
         return x * y * z;
+    }
+
+    constexpr value_type sum() const
+    {
+        return x + y + z;
     }
 };
 
