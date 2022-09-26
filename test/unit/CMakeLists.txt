@@ -1,3 +1,6 @@
+# Copyright (c) Borislav Stanimirov
+# SPDX-License-Identifier: MIT
+#
 include(./get_cpm.cmake)
 CPMAddPackage(gh:iboB/doctest-lib@2.4.9a)
 

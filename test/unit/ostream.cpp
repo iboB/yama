@@ -1,9 +1,5 @@
-// Yama
-// Copyright (c) 2016-2021 Borislav Stanimirov
-//
-// Distributed under the MIT Software License
-// See accompanying file LICENSE.txt or copy at
-// https://opensource.org/licenses/MIT
+// Copyright (c) Borislav Stanimirov
+// SPDX-License-Identifier: MIT
 //
 #include "common.hpp"
 #include "yama/ext/ostream.hpp"
