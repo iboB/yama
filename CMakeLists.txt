@@ -21,6 +21,7 @@ if(dev_mode)
 endif()
 
 add_library(yama INTERFACE)
+add_library(yama::yama ALIAS yama)
 target_include_directories(yama INTERFACE include)
 
 if(${YAMA_BUILD_UNIT_TESTS})

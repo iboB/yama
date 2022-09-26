@@ -1,10 +1,5 @@
 include(./get_cpm.cmake)
-
-CPMAddPackage(
-    NAME doctest-lib
-    GITHUB_REPOSITORY iboB/doctest-lib
-    GIT_TAG 2.4.3b
-)
+CPMAddPackage(gh:iboB/doctest-lib@2.4.9a)
 
 file(GLOB tests ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp)
 source_group("tests" FILES ${tests})
