@@ -41,24 +41,24 @@ constexpr T sq(const T& a)
 }
 
 template <typename T>
-typename std::enable_if<std::is_floating_point<T>::value,
+constexpr typename std::enable_if<std::is_floating_point<T>::value,
     T>::type sign(const T& t)
 {
-    return std::signbit(t) ? T(-1) : T(1);
+    return T((T(0) < t) - (t < T(0)));
 }
 
 template <typename T>
-typename std::enable_if<std::is_signed<T>::value && std::is_integral<T>::value,
+constexpr typename std::enable_if<std::is_signed<T>::value && std::is_integral<T>::value,
     T>::type sign(const T& t)
 {
-    return t < 0 ? T(-1) : T(1);
+    return T((T(0) < t) - (t < T(0)));
 }
 
 template <typename T>
 typename std::enable_if<std::is_unsigned<T>::value,
-    T>::type sign(const T& )
+    T>::type sign(const T& t)
 {
-    return 1;
+    return T(t > 0);
 }
 
 template <typename T>
