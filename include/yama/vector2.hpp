@@ -158,14 +158,15 @@ public:
     vector3_t<T> xyz(const value_type& z = 0) const;
     vector4_t<T> xyzw(const value_type& z = 0, const value_type& w = 0) const;
 
-    constexpr vector2_t swizzle(int sx, int sy) const {
-        YAMA_ASSERT_CRIT(sx >= 0 && sx < value_count, "yama::vector2_t swizzle index out of range");
-        YAMA_ASSERT_CRIT(sy >= 0 && sy < value_count, "yama::vector2_t swizzle index out of range");
+    constexpr vector2_t swizzle(size_type sx, size_type sy) const {
+        YAMA_ASSERT_CRIT(sx < value_count, "yama::vector2_t swizzle index out of range");
+        YAMA_ASSERT_CRIT(sy < value_count, "yama::vector2_t swizzle index out of range");
         return coord(at(sx), at(sy));
     }
 
-    constexpr vector2_t swizzle(const vector2_t<int>& s) const {
-        return swizzle(s.x, s.y);
+    template <typename I>
+    constexpr vector2_t swizzle(const vector2_t<I>& s) const {
+        return swizzle(size_type(s.x), size_type(s.y));
     }
 
     ///////////////////////////
