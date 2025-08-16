@@ -47,3 +47,17 @@ TEST_CASE("xyzw")
     v4.xyz() = v(1, 2, 3);
     CHECK(v4 == v(1, 2, 3, 4));
 }
+
+TEST_CASE("swizzle") {
+    auto v3 = v(1, 2, 3);
+    CHECK(v3.swizzle(0, 1, 2) == v(1, 2, 3));
+    CHECK(v3.swizzle(2, 1, 0) == v(3, 2, 1));
+    CHECK(v3.swizzle(1, 2, 2) == v(2, 3, 3));
+    CHECK(v3.swizzle(vector3_t<int>{2, 1, 0}) == v(3, 2, 1));
+    auto v4 = v(4, 5, 6, 7);
+    CHECK(v4.swizzle(0, 1, 2, 3) == v(4, 5, 6, 7));
+    CHECK(v4.swizzle(3, 2, 1, 0) == v(7, 6, 5, 4));
+    CHECK(v4.swizzle(1, 0, 3, 1) == v(5, 4, 7, 5));
+    CHECK(v4.swizzle(vector4_t<int>{3, 2, 1, 0}) == v(7, 6, 5, 4));
+
+}

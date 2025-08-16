@@ -165,6 +165,17 @@ public:
     vector3_t<T> zyx() const { return coord(z, y, x); }
     vector4_t<T> xyzw(const value_type& w = 0) const;
 
+    constexpr vector3_t swizzle(int sx, int sy, int sz) const {
+        YAMA_ASSERT_CRIT(sx >= 0 && sx < value_count, "yama::vector3_t swizzle index out of range");
+        YAMA_ASSERT_CRIT(sy >= 0 && sy < value_count, "yama::vector3_t swizzle index out of range");
+        YAMA_ASSERT_CRIT(sz >= 0 && sz < value_count, "yama::vector3_t swizzle index out of range");
+        return coord(at(sx), at(sy), at(sz));
+    }
+
+    constexpr vector3_t swizzle(const vector3_t<int>& s) const {
+        return swizzle(s.x, s.y, s.z);
+    }
+
     ///////////////////////////
     // std
 
