@@ -716,6 +716,26 @@ matrix3x3_t<T> operator*(const matrix3x3_t<T>& a, const matrix3x3_t<T>& b)
 }
 
 template <typename T>
+vector3_t<T> operator*(const matrix3x3_t<T>& a, const vector3_t<T>& v)
+{
+    return vector3_t<T>::coord(
+        a.m00 * v.x + a.m01 * v.y + a.m02 * v.z,
+        a.m10 * v.x + a.m11 * v.y + a.m12 * v.z,
+        a.m20 * v.x + a.m21 * v.y + a.m22 * v.z
+    );
+}
+
+template <typename T>
+vector3_t<T> operator*(const vector3_t<T>& v, const matrix3x3_t<T>& a)
+{
+    return vector3_t<T>::coord(
+        a.m00 * v.x + a.m10 * v.y + a.m20 * v.z,
+        a.m01 * v.x + a.m11 * v.y + a.m21 * v.z,
+        a.m02 * v.x + a.m12 * v.y + a.m22 * v.z
+    );
+}
+
+template <typename T>
 matrix3x3_t<T> abs(const matrix3x3_t<T>& a)
 {
     return matrix3x3_t<T>::columns(

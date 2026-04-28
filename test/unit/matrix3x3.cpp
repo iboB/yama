@@ -389,3 +389,33 @@ TEST_CASE("ops")
     CHECK(YamaApprox(m1 * m2) == matrix3::identity());
     CHECK(YamaApprox(m2 * m1) == matrix3::identity());
 }
+
+TEST_CASE("transform") {
+    auto ms = matrix3::scaling(2, 3, 4);
+    {
+        auto v0 = v(1, 2, 3);
+        auto v1 = ms * v0;
+        CHECK(v1 == v(2, 6, 12));
+        v1 = v0 * ms;
+        CHECK(v1 == v(2, 6, 12));
+    }
+
+    auto mr = matrix3::rotation_x(constants::PI_HALF);
+    {
+        auto v0 = v(1, 2, 3);
+        auto v1 = mr * v0;
+        CHECK(YamaApprox(v1) == v(1, -3, 2));
+
+        v1 = v0 * mr;
+        CHECK(YamaApprox(v1) == v(1, 3, -2));
+    }
+
+    auto m = mr * ms;
+    {
+        auto v0 = v(1, 2, 3);
+        auto v1 = m * v0;
+        CHECK(YamaApprox(v1) == v(2, -12, 6));
+        v1 = v0 * m;
+        CHECK(YamaApprox(v1) == v(2, 9, -8));
+    }
+}
