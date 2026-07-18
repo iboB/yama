@@ -10,6 +10,8 @@ using doctest::Approx;
 
 TEST_SUITE_BEGIN("vector4");
 
+static_assert(std::tuple_size_v<vector4> == 4);
+
 TEST_CASE("construction")
 {
     double d0[] = { 0, 0, 0, 0 };

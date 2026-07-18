@@ -7,6 +7,7 @@
 #include <iterator>
 #include <cstdlib>
 #include <algorithm>
+#include <utility>
 
 #include "util.hpp"
 #include "shorthand.hpp"
@@ -612,3 +613,6 @@ constexpr vector2_t<T> vt(const T& x, const T& y)
 #endif
 
 }
+
+template <class T>
+struct std::tuple_size<yama::vector2_t<T>> : public integral_constant<std::size_t, 2> {};
